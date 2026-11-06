@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HabalGo – Rider Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="shell">
+
+  <!-- ===== SCREEN 1: REGISTRATION ===== -->
+  <section id="registerScreen" class="card screen active">
+    <header class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="32" fill="#22c55e"/>
+        <g fill="none" stroke="#06140b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="42" r="7"/><circle cx="46" cy="42" r="7"/>
+          <path d="M18 42l9-14h10l9 14M27 28l-3-6h-5M37 28l4-6h5"/>
+        </g>
+      </svg>
+      <p class="wordmark">Habal<span>Go</span></p>
+      <h1>Rider Registration</h1>
+      <p class="subtitle">Register as a Habal-habal rider and become part of HabalGo.</p>
+      <p class="hint">Provide accurate personal information and upload the required documents so we can verify your registration.</p>
+      <div class="progress" aria-label="Form completion">
+        <div class="bar"><i id="progressFill"></i></div>
+        <span id="progressText">0% complete</span>
+      </div>
+    </header>
+
+    <form id="regForm" novalidate>
+      <!-- Personal information -->
+      <fieldset>
+        <legend><svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Personal Information</legend>
+        <div class="grid">
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
+            <small class="error" data-for="lastName"></small>
+          </div>
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
+            <small class="error" data-for="firstName"></small>
+          </div>
+          <div class="field">
+            <label for="middleInitial">Middle initial</label>
+            <input id="middleInitial" name="middleInitial" type="text" maxlength="1" required>
+            <small class="error" data-for="middleInitial"></small>
+          </div>
+          <div class="field">
+            <label for="dob">Date of birth</label>
+            <input id="dob" name="dob" type="date" required>
+            <small class="error" data-for="dob"></small>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Face photo -->
+      <fieldset>
+        <legend><svg viewBox="0 0 24 24" class="ico"><path d="M4 8h3l2-3h6l2 3h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Upload Your Face Photo</legend>
+        <div class="drop" data-key="photo" tabindex="0" role="button" aria-label="Upload face photo">
+          <input type="file" id="photo" accept=".jpg,.jpeg,.png" hidden>
+          <div class="drop-empty">
+            <p><strong>Drag and drop</strong> your photo here, or click to browse</p>
+            <p class="meta">Please upload a clear, recent photo of your face.</p>
+            <p class="meta">JPG, JPEG or PNG</p>
+          </div>
+          <div class="drop-filled" hidden>
+            <img id="photoPreview" alt="Face photo preview">
+            <div class="file-info">
+              <span class="check">✓</span><span class="fname"></span>
+              <div class="actions">
+                <button type="button" class="link" data-action="change">Change</button>
+                <button type="button" class="link danger" data-action="remove">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <small class="error" data-for="photo"></small>
+      </fieldset>
+
+      <!-- Documents -->
+      <fieldset>
+        <legend><svg viewBox="0 0 24 24" class="ico"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg>Required Documents</legend>
+
+        <div class="doc">
+          <h3>Official Receipt / Certificate of Registration (OR/CR)</h3>
+          <p class="meta">Required to verify that the motorcycle you will use is registered. PDF, JPG, JPEG or PNG.</p>
+          <div class="drop slim" data-key="orcr" tabindex="0" role="button" aria-label="Upload OR/CR">
+            <input type="file" id="orcr" accept=".pdf,.jpg,.jpeg,.png" hidden>
+            <div class="drop-empty"><p><strong>Drag and drop</strong> or click to browse</p></div>
+            <div class="drop-filled" hidden>
+              <div class="file-info">
+                <span class="check">✓</span><span class="fname"></span>
+                <div class="actions">
+                  <button type="button" class="link" data-action="change">Replace</button>
+                  <button type="button" class="link danger" data-action="remove">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <small class="error" data-for="orcr"></small>
+        </div>
+
+        <div class="doc">
+          <h3>Driver's License</h3>
+          <p class="meta">Required to verify that you are licensed to drive. PDF, JPG, JPEG or PNG.</p>
+          <div class="drop slim" data-key="license" tabindex="0" role="button" aria-label="Upload driver's license">
+            <input type="file" id="license" accept=".pdf,.jpg,.jpeg,.png" hidden>
+            <div class="drop-empty"><p><strong>Drag and drop</strong> or click to browse</p></div>
+            <div class="drop-filled" hidden>
+              <div class="file-info">
+                <span class="check">✓</span><span class="fname"></span>
+                <div class="actions">
+                  <button type="button" class="link" data-action="change">Replace</button>
+                  <button type="button" class="link danger" data-action="remove">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <small class="error" data-for="license"></small>
+        </div>
+      </fieldset>
+
+      <!-- Submission -->
+      <div class="submit-area">
+        <label class="check-row">
+          <input type="checkbox" id="confirm">
+          <span>I confirm that the information and documents I submitted are accurate.</span>
+        </label>
+        <small class="error" data-for="confirm"></small>
+        <p class="privacy">Your personal information and uploaded documents will be used only for registration and rider verification.</p>
+        <button type="submit" id="submitBtn" class="btn">
+          <span class="btn-label">Submit Registration</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===== SCREEN 2: PENDING APPROVAL ===== -->
+  <section id="successScreen" class="card screen" aria-live="polite">
+    <div class="done">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#22c55e"/><path d="M19 33l9 9 17-19" fill="none" stroke="#06140b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h1>Registration Successfully Submitted!</h1>
+      <p class="subtitle">Thank you for registering with HabalGo. Your information and documents have been submitted successfully.</p>
+
+      <div class="status">
+        <svg class="clock" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="3"/>
+          <line class="hand-m" x1="24" y1="24" x2="24" y2="10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <line class="hand-h" x1="24" y1="24" x2="33" y2="24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <p class="status-label">Pending Approval</p>
+          <p class="meta">Please wait while our team reviews your registration and submitted documents.</p>
+        </div>
+      </div>
+
+      <p class="hint">Once your registration has been reviewed, you will be informed about your application status.</p>
+      <button type="button" id="backBtn" class="btn ghost">Back to Registration</button>
+    </div>
+  </section>
+
+</main>
+<script src="script.js"></script>
+</body>
+</html>
